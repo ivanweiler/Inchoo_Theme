@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <advanced>
+            <groups>
+                <modules_disable_route>
+                    <label>Disable Modules Routing</label>
+                    <sort_order>3</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+                    <fields>
+                        <mode translate="label comment">
+                            <sort_order>10</sort_order>
+                            <label>Mode</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>inchoo_theme/system_config_source_mode</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </mode>
+						<exception translate="comment">
+                            <frontend_model>inchoo_theme/adminhtml_system_config_exceptions</frontend_model>
+                            <backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment></comment>
+                        </exception>
+                    </fields>
+                </modules_disable_route>
+            </groups>
+        </advanced>
+        <dev>
+        	<groups>
+                <html translate="label">
+                    <label>HTML Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>115</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <tidy_html_files translate="label">
+                            <label>Tidy HTML Files (beta)</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Experimental. Turn this feature off if there are troubles with output.</comment>
+                        </tidy_html_files>
+                    </fields>
+                </html>  		
+        	</groups>
+        </dev>
+    </sections>
+</config>

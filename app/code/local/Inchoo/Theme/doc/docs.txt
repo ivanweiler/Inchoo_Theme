@@ -1,0 +1,29 @@
+*Author*
+Ivan Weiler, Inchoo
+
+
+*Changelog*
+v.0.7.2 // 03.03.2011 - more tidy code, added admin configuration field
+v.0.7.1 // 16.01.2011 - initial tidy code
+v.0.7.0 // 25.11.2010 - initial data, price, url helper
+v.0.6.1 // 24.10.2010 - disable modules routing improvements
+v.0.6.0 // 14.10.2010 - initial code from Holding module, option to disable modules routing
+v.0.5.1 // 15.09.2010 - working on text helper
+v.0.5.0 // 07.09.2010 - initial text helper structure
+v.0.4.0 // 03.09.2010 - cms filter added to enable customer data in cms pages and blocks
+v.0.3.0 // 14.07.2010 - action helper, cthumb fix
+v.0.2.0 // 06.07.2010 - added crop, thumb, cthumb to image
+v.0.1.0 // 05.07.2010 - initial version, image works with category, event, blog, etc.
+
+
+*Notes*
+
+echo Mage::helper('inchoo_theme/image')->init($model)->resize(175,175);
+
+echo Mage::helper('inchoo_theme/image')->init($model)->thumb(175,175);
+echo Mage::helper('inchoo_theme/image')->init($model)->cthumb(175,175);
+
+- model: category, product, catalogevent ..
+
+<!-- set lifetime to NULL -->
+<action method="setCacheLifetime" />

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+		<Inchoo_Theme>
+			<active>true</active>
+			<codePool>local</codePool>       
+		</Inchoo_Theme>
+	</modules>
+</config>

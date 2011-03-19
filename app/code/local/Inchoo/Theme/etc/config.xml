@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Inchoo_Theme>
+             <version>0.6.1</version>
+        </Inchoo_Theme>
+    </modules>
+    
+    <global>
+        <models>
+            <inchoo_theme>
+                <class>Inchoo_Theme_Model</class>
+            </inchoo_theme>
+        </models>
+		<blocks>
+            <inchoo_theme>
+                <class>Inchoo_Theme_Block</class>
+            </inchoo_theme>
+            <customer>
+            	<rewrite>
+            		<account_navigation>Inchoo_Theme_Block_Customer_Account_Navigation</account_navigation>
+            	</rewrite>
+            </customer>
+        </blocks>
+        <helpers>
+            <inchoo_theme>
+                <class>Inchoo_Theme_Helper</class>
+            </inchoo_theme>
+            <itheme>
+                <class>Inchoo_Theme_Helper</class>
+            </itheme>            
+        </helpers>
+        <cms>
+            <page>
+                <tempate_filter>inchoo_theme/cms_template_filter</tempate_filter>
+            </page>
+            <block>
+                <tempate_filter>inchoo_theme/cms_template_filter</tempate_filter>
+            </block>
+        </cms>        
+    </global>
+
+    <frontend>
+		<routers>
+            <inchoo_theme>
+                <use>standard</use>
+                <args>
+                    <module>Inchoo_Theme</module>
+                    <frontName>itheme</frontName>
+                </args>
+            </inchoo_theme>
+        </routers>
+        <events>
+            <controller_action_predispatch>
+                <observers>
+                    <inchoo_holding>
+                        <class>inchoo_theme/observer</class>
+                        <method>actionPreDispatch</method>
+                    </inchoo_holding>
+                </observers>
+            </controller_action_predispatch>
+            <core_block_abstract_to_html_after>
+            	<observers>
+            		<inchoo_theme_page_tidy>
+						<class>inchoo_theme/observer</class>
+                        <method>tidyPageHtml</method>         			
+            		</inchoo_theme_page_tidy>
+            	</observers>
+            </core_block_abstract_to_html_after>
+    	</events>
+    </frontend>
+    
+	<adminhtml>
+		<events>
+            <clean_catalog_images_cache_after>
+                <observers>
+                    <inchoo_theme>
+                        <class>inchoo_theme/observer</class>
+                        <method>clearCache</method>
+                    </inchoo_theme>>
+                </observers>
+            </clean_catalog_images_cache_after>          
+        </events>    	
+    </adminhtml>
+    
+	<default>
+		<advanced>
+			<modules_disable_route>
+				<mode>1</mode>
+			</modules_disable_route>
+		</advanced>
+    </default>
+
+</config>
