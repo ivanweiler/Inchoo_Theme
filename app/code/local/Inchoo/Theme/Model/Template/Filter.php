@@ -1,5 +1,5 @@
 <?php
-class Inchoo_Theme_Model_Cms_Template_Filter extends Mage_Cms_Model_Template_Filter
+class Inchoo_Theme_Model_Template_Filter extends Mage_Widget_Model_Template_Filter
 {
 	
     public function __construct()

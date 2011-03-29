@@ -73,7 +73,7 @@ class Inchoo_Theme_Model_Observer
 			return;
 		}
 		
-		if(!class_exists('tidy')) {
+		if(!class_exists('tidy',false)) {
 			 return;
 		};
 		
