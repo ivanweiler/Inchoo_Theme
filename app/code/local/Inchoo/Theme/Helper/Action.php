@@ -1,5 +1,5 @@
 <?php
-class Inchoo_Theme_Helper_Action
+class Inchoo_Theme_Helper_Action extends Mage_Core_Helper_Abstract
 {
 
 	/*

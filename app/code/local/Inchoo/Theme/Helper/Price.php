@@ -25,26 +25,34 @@ class Inchoo_Theme_Helper_Price extends Mage_Core_Helper_Abstract
 {
 	
 	//displays code + rounded no-decimals price
-    public function currency($value, $format = true, $includeContainer = true)
+    public function currency($value, $format = true, $includeContainer = true, $mode = 'round')
     {
-		/*
-		if(!$format) {
-			return round(Mage::helper('core')->currency($value, false, $includeContainer));
-		}
-		*/
-
-		$price = round(Mage::helper('core')->currency($value, false, false));
-		$code = $this->getCurrentCurrencyCode();
-		
-		if(!$includeContainer) {
-			return "$code $price";
+		switch($mode) {
+			case 'floor':
+				$price = floor(Mage::helper('core')->currency($value, false, false));
+			case 'ceil':
+				$price = ceil(Mage::helper('core')->currency($value, false, false));
+			case 'round':
+				$price = round(Mage::helper('core')->currency($value, false, false));
+			default: 
+				$price = Mage::helper('core')->currency($value, false, false);
 		}
 		
 		if(!$format) {
-			return '<span class="price-value">' . $price . '</span>';
-		}
-	
-		return '<span class="price-code">' . $code . '</span><span class="price-value">' . $price . '</span>';
+            return Mage::helper('core')->currency($price, false, $includeContainer);
+        }
+		
+        $code = $this->getCurrentCurrencyCode();
+        
+        if(!$includeContainer) {
+            return "$code $price";
+        }
+        
+        if(!$format) {
+            return '<span class="price-value">' . $price . '</span>';
+        }
+    
+        return '<span class="price-code">' . $code . '</span><span class="price-value">' . $price . '</span>';
     }
     
     public function getCurrentCurrencyCode()
@@ -62,7 +70,4 @@ class Inchoo_Theme_Helper_Price extends Mage_Core_Helper_Abstract
 		return Mage::helper('core')->currency($value, false, false);
     }
 
-    
-    
-	
 }

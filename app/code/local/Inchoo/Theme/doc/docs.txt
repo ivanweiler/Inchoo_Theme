@@ -3,6 +3,7 @@ Ivan Weiler, Inchoo
 
 
 *Changelog*
+v.0.7.4 // 03.05.2011 - bugfixes and improvements on helpers, tidy code improvements
 v.0.7.3 // 29.03.2011 - cms filter bugfix, small improvements
 v.0.7.2 // 03.03.2011 - more tidy code, added admin configuration field
 v.0.7.1 // 16.01.2011 - initial tidy code

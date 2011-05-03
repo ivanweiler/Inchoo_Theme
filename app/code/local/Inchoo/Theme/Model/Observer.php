@@ -77,15 +77,13 @@ class Inchoo_Theme_Model_Observer
 			 return;
 		};
 		
-		//var_dump(Mage::getStoreConfigFlag('dev/html/tidy_html_files'));
-		
 		if(!Mage::getStoreConfigFlag('dev/html/tidy_html_files')) {
 			return;
 		}
 		
 		$html = $observer->getEvent()->getTransport()->getHtml();
 		
-		$start = strtok(microtime(), ' ') + strtok('');
+		$start = microtime(true);
 
 		// Tidy
 		try {
@@ -94,37 +92,52 @@ class Inchoo_Theme_Model_Observer
 				'indent-spaces'			=>	0,
 				'indent-cdata'			=>	true,
 				//'indent-attributes'	=>	true,
-				
 				//only way to have closed metas
 				'output-xhtml'			=>	true,
-			
 				//'clean'					=>	false,
 				'wrap'					=> 0,
 				//'drop-proprietary-attributes'	=>	false,
-				
 				//strict removes form name attribute
 				'doctype'				=>	'omit',
-			
 				'preserve-entities'		=>	true,
-			
 				'newline'				=>	'LF',
-			
+
+				//'new-blocklevel-tags' ?
+				'new-inline-tags'		=>	'
+					fb:activity,
+					fb:add-profile-tab,
+					fb:bookmark,
+					fb:comments,
+					fb:connect-bar,
+					fb:facepile,
+					fb:fan,
+					fb:friendpile,
+					fb:like,
+					fb:like-box,
+					fb:live-stream,
+					fb:login,
+					fb:login-button,
+					fb:name,
+					fb:profile-pic,
+					fb:recommendations,
+					fb:server-fbml,
+					fb:share-button,
+					fb:social-bar',
 			);
+			
+			//Mage::dispatchEvent('itheme_tidy_config',array());
 			
 			$tidy = new tidy;	
 			$tidy->parseString($html, $config, 'utf8');
 			$tidy->cleanRepair();
 			
 			$matches = array();
-			$doctype = preg_match('/<!DOCTYPE .+?>/',$html,$matches);
-			//var_dump($matches);
-			
-			//$doctype = $tidy->root()->child[0]->value;
+			$doctype = preg_match('/<!DOCTYPE .+?>/', $html, $matches);
 			
 			$html = (string)$tidy;
 			
 			//closed script in same line
-			//$html = str_replace(">\n</script>", "></script>", $html);
+			$html = str_replace("\">\n</script>", "\"></script>", $html);
 			
 			//comments in new line
 			$html = str_replace("><!--", ">\n<!--", $html);
@@ -132,6 +145,7 @@ class Inchoo_Theme_Model_Observer
 
 			//remove empty lines //slow regex?
 			//$html = preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $html);
+			//$html = str_replace("\n\n", "\n", $html);
 			
 			//$html = preg_replace('/(.)(<!--)/',"$1\n$2",$html);
 			//$html = preg_replace('/(-->)(.)/',"$1\n$2",$html);
@@ -146,8 +160,7 @@ class Inchoo_Theme_Model_Observer
 		
 		$observer->getEvent()->getTransport()->setHtml($html);
 		
-		$stop = strtok(microtime(), ' ') + strtok('');
-		//echo round($stop - $start, 4);
+		//echo microtime(true) - $start;
 		
 	}	
 	
