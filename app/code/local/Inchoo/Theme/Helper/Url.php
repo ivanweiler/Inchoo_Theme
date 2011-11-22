@@ -3,10 +3,10 @@
 class Inchoo_Theme_Helper_Url extends Mage_Core_Helper_Abstract
 {
 	
-	public function getProductUrl($productId, $categoryId=null, $routeParams=array())
+	public function getProductUrl($productId, $categoryId=null, $routeParams=array(), $storeId=null)
 	{
 		$routePath      = '';
-        $storeId		= Mage::app()->getStore()->getId();		
+        $storeId		= $storeId ? $storeId : Mage::app()->getStore()->getId();
 		
 		$idPath = sprintf('product/%d', $productId);
 		if ($categoryId) {
@@ -30,10 +30,10 @@ class Inchoo_Theme_Helper_Url extends Mage_Core_Helper_Abstract
 		return Mage::getModel('core/url')->setStore($storeId)->getUrl($routePath, $routeParams);
 	}
 	
-	public function getCategoryUrl($categoryId, $routeParams=array())
+	public function getCategoryUrl($categoryId, $routeParams=array(), $storeId=null)
 	{
 		$routePath      = '';
-		$storeId = Mage::app()->getStore()->getId();
+		$storeId		= $storeId ? $storeId : Mage::app()->getStore()->getId();
 		
 		$idPath	 = 'category/' . $categoryId;
 		

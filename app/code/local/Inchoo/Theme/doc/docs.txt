@@ -1,8 +1,44 @@
-*Author*
+Author
+======
 Ivan Weiler, Inchoo
 
 
-*Changelog*
+Usage
+=====
+
+Image resize/crop
+-----------------
+
+echo Mage::helper('inchoo_theme/image')->load($model)->resize(175,175);
+echo Mage::helper('inchoo_theme/image')->load($model)->thumb(175,175);
+echo Mage::helper('inchoo_theme/image')->load($model)->cthumb(175,175);
+- model: category, product, catalogevent ..
+
+Price helper
+------------
+echo Mage::helper('itheme/price')->currency(22.65, true, false)
+USD 23
+
+echo Mage::helper('itheme/price')->currency(22.65, true, false)
+23
+
+echo Mage::helper('itheme/price')->currency(22.65, true, true)
+<span class="price-code">USD</span><span class="price-value">23</span>
+
+echo Mage::helper('itheme/price')->currency(22.65, false, true)
+<span class="price-value">23</span>
+
+
+echo Mage::helper('itheme/price')->getCurrentCurrencyCode()
+USD
+
+echo Mage::helper('itheme/price')->getCurrentCurrencySymbol()
+$
+
+
+Changelog
+=========
+v.0.8.0 // 22.11.2011 - emulate functionality, multiple changes on price,html,url helpers
 v.0.7.4 // 03.05.2011 - bugfixes and improvements on helpers, tidy code improvements
 v.0.7.3 // 29.03.2011 - cms filter bugfix, small improvements
 v.0.7.2 // 03.03.2011 - more tidy code, added admin configuration field
@@ -15,17 +51,10 @@ v.0.5.0 // 07.09.2010 - initial text helper structure
 v.0.4.0 // 03.09.2010 - cms filter added to enable customer data in cms pages and blocks
 v.0.3.0 // 14.07.2010 - action helper, cthumb fix
 v.0.2.0 // 06.07.2010 - added crop, thumb, cthumb to image
-v.0.1.0 // 05.07.2010 - initial version, image works with category, event, blog, etc.
+v.0.1.0 // 05.07.2010 - initial version with image helper, works with category, event, blog, etc.
 
 
-*Notes*
-
-echo Mage::helper('inchoo_theme/image')->init($model)->resize(175,175);
-
-echo Mage::helper('inchoo_theme/image')->init($model)->thumb(175,175);
-echo Mage::helper('inchoo_theme/image')->init($model)->cthumb(175,175);
-
-- model: category, product, catalogevent ..
-
+Notes
+=========
 <!-- set lifetime to NULL -->
 <action method="setCacheLifetime" />

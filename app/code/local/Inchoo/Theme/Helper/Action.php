@@ -76,7 +76,7 @@ class Inchoo_Theme_Helper_Action extends Mage_Core_Helper_Abstract
     public function isHomePage()
     {
     	$urlModel = Mage::getModel('core/url');
-        return $urlModel->getUrl('') == $urlModel->getUrl('*/*/*', array('_current'=>true, '_use_rewrite'=>true));
+        return $urlModel->getUrl('',array('_current'=>true)) == $urlModel->getUrl('*/*/*', array('_current'=>true, '_use_rewrite'=>true));
     }
 	
 	public function isCmsPageView($identifier='')

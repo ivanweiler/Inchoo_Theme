@@ -1,27 +1,25 @@
 <?php
-/*
- *  WIP, do not use
- */
-class Inchoo_Theme_Helper_Text extends Mage_Core_Helper_Abstract //Mage_Core_Helper_String?
+class Inchoo_Theme_Helper_Html extends Mage_Core_Helper_Abstract //Mage_Core_Helper_String?
 {
-	
-	public function htmlStrip($string, $allowable_tags=array(), $preserve_wrap=false)
+	/*
+	public function htmlStrip($string, $allowTags=array(), $preserveWrap=false)
 	{
-		$allowable_tags_string = '';
-		foreach($allowable_tags as $allowable_tag) {
-			$allowable_tags_string .= "<$allowable_tag>";
+		$allowTagsString = '';
+		foreach($allowTags as $tag) {
+			$allowTagsString .= "<$tag>";
 		}
 		
-		if($preserve_wrap) {
+		if($preserveWrap) {
 			
 		}
 		
-		return strip_tags($string, $allowable_tags_string);
+		return strip_tags($string, $allowTagsString);
 	}
+	*/
 	
-	//removes all inline styling
-	public function htmlClean($text, $allowable_attributes)
+	public function htmlClean($html, $allowTags, $allowAttribs)
 	{
+		/*
 		$SIMPLEPIE_PCRE_HTML_ATTRIBUTE = '((?:[\x09\x0A\x0B\x0C\x0D\x20]+[^\x09\x0A\x0B\x0C\x0D\x20\x2F\x3E][^\x09\x0A\x0B\x0C\x0D\x20\x2F\x3D\x3E]*(?:[\x09\x0A\x0B\x0C\x0D\x20]*=[\x09\x0A\x0B\x0C\x0D\x20]*(?:"(?:[^"]*)"|\'(?:[^\']*)\'|(?:[^\x09\x0A\x0B\x0C\x0D\x20\x22\x27\x3E][^\x09\x0A\x0B\x0C\x0D\x20\x3E]*)?))?)*)[\x09\x0A\x0B\x0C\x0D\x20]*';
 		$strip_attributes = array('bgsound', 'class', 'expr', 'id', 'style', 'onclick', 'onerror', 'onfinish', 'onmouseover', 'onmouseout', 'onfocus', 'onblur', 'lowsrc', 'dynsrc');
 		
@@ -30,6 +28,17 @@ class Inchoo_Theme_Helper_Text extends Mage_Core_Helper_Abstract //Mage_Core_Hel
 		}		
 		
 		return $text;
+		*/
+		
+		//$allowTags = array('a','img','p','strong','em','ul','ol','li','br');
+		//$allowAttribs = array('src','href','class','alt','title')
+		
+		$filter = new Zend_Filter_StripTags(array(
+			'allowTags'		=>	$allowTags,
+			'allowAttribs'	=>	$allowAttribs
+		));
+		
+		return $filter->filter($html);		
 	}
 	
 	//borrowed from Cake // Text Helper

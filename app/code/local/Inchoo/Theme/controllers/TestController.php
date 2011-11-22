@@ -2,6 +2,13 @@
 class Inchoo_Theme_TestController extends Mage_Core_Controller_Front_Action
 {
 	
+    public function preDispatch()
+    {
+		$this->setFlag('', self::FLAG_NO_DISPATCH, true);
+		//$this->_forward('noRoute');
+        return parent::preDispatch();
+    }	
+	
 	public function indexAction()
 	{
 		echo "Controller test ;)";
@@ -13,23 +20,24 @@ class Inchoo_Theme_TestController extends Mage_Core_Controller_Front_Action
 		
 		$category = Mage::getModel('catalog/category')->load(10);
 		echo Mage::helper('inchoo_theme/image')
-			->init($category)
-			->crop(10,10,20,0)
+			->load($category)
+			//->crop(10,10,20,0)
 			//->resize(200,200)
+			->cthumb(285,180)
 			;
 	}	
 	
 	public function test2Action()
 	{
 		$product = Mage::getModel('catalog/product')->load(166);
-		echo Mage::helper('inchoo_theme/image')->init($product)->resize(200,200);
+		echo Mage::helper('inchoo_theme/image')->load($product)->resize(200,200);
 	}
 	
 	public function test3Action()
 	{
 		$category = Mage::getModel('catalog/category')->load(10);
 		echo Mage::helper('inchoo_theme/image')
-			->init($category)
+			->load($category)
 			//->resize(200,200)
 			->cthumb(500,300)
 			;
