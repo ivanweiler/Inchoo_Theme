@@ -4,8 +4,7 @@ class Inchoo_Theme_TestController extends Mage_Core_Controller_Front_Action
 	
     public function preDispatch()
     {
-		$this->setFlag('', self::FLAG_NO_DISPATCH, true);
-		//$this->_forward('noRoute');
+		//$this->setFlag('', self::FLAG_NO_DISPATCH, true);
         return parent::preDispatch();
     }	
 	
@@ -49,6 +48,17 @@ class Inchoo_Theme_TestController extends Mage_Core_Controller_Front_Action
 		var_dump(Mage::helper('inchoo_theme/action')->is('inchoo_theme/test/*'));
 		var_dump(Mage::helper('inchoo_theme/action')->isInchooThemeTestTest4());
 	}
+	
+	public function test5Action()
+	{
+		echo Mage::helper('itheme/datetime')->format('2008-07-09 10:13:41');
+		echo '<br />';
+		echo Mage::helper('itheme/datetime')->format(now());
+		echo '<br />';
+		echo Mage::helper('itheme/datetime')->format(strtotime(now()));
+		echo '<br />';
+		echo Mage::helper('itheme/datetime')->format(now(),'php','l jS \of F Y h:i:s A');
+	}	
 	
 	
 }

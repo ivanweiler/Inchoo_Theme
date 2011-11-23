@@ -2,7 +2,6 @@
 class Inchoo_Theme_Helper_Price extends Mage_Core_Helper_Abstract
 {
 	
-	//displays code + rounded no-decimals price, WIP
 	/*
     public function currency($value, $format = true, $includeContainer = true, $mode = 'round')
     {

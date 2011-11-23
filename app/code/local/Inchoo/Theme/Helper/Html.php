@@ -17,7 +17,7 @@ class Inchoo_Theme_Helper_Html extends Mage_Core_Helper_Abstract //Mage_Core_Hel
 	}
 	*/
 	
-	public function htmlClean($html, $allowTags, $allowAttribs)
+	public function htmlClean($html, $allowTags='default', $allowAttribs='default')
 	{
 		/*
 		$SIMPLEPIE_PCRE_HTML_ATTRIBUTE = '((?:[\x09\x0A\x0B\x0C\x0D\x20]+[^\x09\x0A\x0B\x0C\x0D\x20\x2F\x3E][^\x09\x0A\x0B\x0C\x0D\x20\x2F\x3D\x3E]*(?:[\x09\x0A\x0B\x0C\x0D\x20]*=[\x09\x0A\x0B\x0C\x0D\x20]*(?:"(?:[^"]*)"|\'(?:[^\']*)\'|(?:[^\x09\x0A\x0B\x0C\x0D\x20\x22\x27\x3E][^\x09\x0A\x0B\x0C\x0D\x20\x3E]*)?))?)*)[\x09\x0A\x0B\x0C\x0D\x20]*';
@@ -30,8 +30,12 @@ class Inchoo_Theme_Helper_Html extends Mage_Core_Helper_Abstract //Mage_Core_Hel
 		return $text;
 		*/
 		
-		//$allowTags = array('a','img','p','strong','em','ul','ol','li','br');
-		//$allowAttribs = array('src','href','class','alt','title')
+		if($allowTags=='default') {
+			$allowTags = array('a','img','p','strong','em','ul','ol','li','br');
+		}
+		if($allowAttribs=='default') {
+			$allowAttribs = array('src','href','class','alt','title');
+		}
 		
 		$filter = new Zend_Filter_StripTags(array(
 			'allowTags'		=>	$allowTags,
