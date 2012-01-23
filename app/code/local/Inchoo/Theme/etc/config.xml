@@ -51,6 +51,7 @@
             </inchoo_theme>
         </routers>
         <events>
+        	<!-- router disable functionality
             <controller_action_predispatch>
                 <observers>
                     <inchoo_holding>
@@ -59,6 +60,8 @@
                     </inchoo_holding>
                 </observers>
             </controller_action_predispatch>
+            -->
+            <!-- html tidy functionality; uncomment to enable
             <core_block_abstract_to_html_after>
             	<observers>
             		<inchoo_theme_page_tidy>
@@ -67,6 +70,7 @@
             		</inchoo_theme_page_tidy>
             	</observers>
             </core_block_abstract_to_html_after>
+            -->
     	</events>
     </frontend>
     

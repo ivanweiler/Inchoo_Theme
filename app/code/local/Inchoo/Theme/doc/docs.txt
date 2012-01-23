@@ -1,40 +1,99 @@
-Author
+About
 ======
-Ivan Weiler, Inchoo
-
+@author: Ivan Weiler
+@description: Santa's little helpers
 
 Usage
 =====
 
-Image resize/crop
------------------
+Action helper
+-------------
+Mage::helper('itheme/action')->is('checkout')
+Mage::helper('itheme/action')->is('checkout/*/*')
+Mage::helper('itheme/action')->is(array('checkout/onepage/success','customer/*/*'))
 
-echo Mage::helper('inchoo_theme/image')->load($model)->resize(175,175);
-echo Mage::helper('inchoo_theme/image')->load($model)->thumb(175,175);
-echo Mage::helper('inchoo_theme/image')->load($model)->cthumb(175,175);
+Mage::helper('itheme/action')->isHomePage()
+Mage::helper('itheme/action')->isCmsPageView('about')
+Mage::helper('itheme/action')->isCatalogProductView('product-url-identifier')
+
+Data helper
+-----------
+//block by type
+echo Mage::helper('itheme')->getBlockHtml('core/template', array('template' => 'lol.phtml'));
+//static block
+echo Mage::helper('itheme')->getCmsBlockHtml('static-block-code');
+//custom var, text by default
+echo Mage::helper('itheme')->getCustomvar('customvar-code', 'text|html');
+//get Magento config
+echo Mage::helper('itheme')->getConfig($path, $store = null);
+
+Datetime helper
+---------------
+//$formatType=php|iso, $format=d.M.Y
+//$formatType=full|long|medium|short, $format=date|time|datetime	
+echo Mage::helper('itheme/datetime')->format($dateTime, $formatType='short', $format='datetime', $store=null);
+
+Html helper
+-----------
+Mage::helper('itheme/html')->htmlClean($html, $allowTags='default', $allowAttribs='default')
+Mage::helper('itheme/html')->htmlSubstr($text, $length = 100, $options = array()) {
+$defaultOptons = array(
+	'ending' => '..', 'exact' => true, 'html' => true
+);
+
+Image resize/crop helper
+------------------------
+
+echo Mage::helper('itheme/image')->load($model)->resize(175,175);
+echo Mage::helper('itheme/image')->load($model)->thumb(175,175);
+echo Mage::helper('itheme/image')->load($model)->cthumb(175,175);
 - model: category, product, catalogevent ..
 
 Price helper
 ------------
-echo Mage::helper('itheme/price')->currency(22.65, true, false)
-USD 23
-
-echo Mage::helper('itheme/price')->currency(22.65, true, false)
-23
-
-echo Mage::helper('itheme/price')->currency(22.65, true, true)
-<span class="price-code">USD</span><span class="price-value">23</span>
-
-echo Mage::helper('itheme/price')->currency(22.65, false, true)
-<span class="price-value">23</span>
-
-
 echo Mage::helper('itheme/price')->getCurrentCurrencyCode()
 USD
 
 echo Mage::helper('itheme/price')->getCurrentCurrencySymbol()
 $
 
+echo Mage::helper('itheme/price')->getCurrentCurrencyValue($order->getGrandTotal())
+1 220,00 -> zend format by current locale
+
+Url helper
+----------
+echo Mage::helper('itheme/url')->getProductUrl($productId, $categoryId=null, $routeParams=array(), $storeId=null)
+echo Mage::helper('itheme/url')->getCategoryUrl($categoryId, $routeParams=array(), $storeId=null)
+
+
+Emulators
+---------
+/itheme/emulate/checkoutSuccess/id/{order_increment_id} - emulates order success page
+/itheme/emulate/customer/id/{customer_id} - logs you in as customer given by id
+
+- requires admin privileges 'all'
+
+Template Filter addons
+----------------------
+{{var customer.getName}}
+{{if customer.getIsLoggedIn}}
+
+Router Blocker
+--------------
+- not activated by default, check config.xml, system.xml
+
+System->Configuration->Advanced
+example: catalogsearch/*/*
+
+tidyHtml
+--------
+- not activated by default, check config.xml, system.xml
+System->Configuration->Developer->Html
+
+Custom blocks
+--------------
+Page_Html_Head - WIP
+Customer_Account_Navigation - removeLink, setSortOrder
 
 Changelog
 =========
