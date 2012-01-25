@@ -129,6 +129,7 @@ class Inchoo_Theme_Model_Image extends Mage_Catalog_Model_Product_Image
     * remove this and custom adapter when fixed
     * http://www.magentocommerce.com/bug-tracking/issue?issue=6989
     */
+    //@todo: It looks fixed in Magento>=1.6, test and remove this
     public function getImageProcessor()
     {
     	if( !$this->_processor ) {

@@ -4,7 +4,7 @@ class Inchoo_Theme_TestController extends Mage_Core_Controller_Front_Action
 	
     public function preDispatch()
     {
-		//$this->setFlag('', self::FLAG_NO_DISPATCH, true);
+		$this->setFlag('', self::FLAG_NO_DISPATCH, true);
         return parent::preDispatch();
     }	
 	
