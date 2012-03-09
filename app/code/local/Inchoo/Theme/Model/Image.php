@@ -8,6 +8,7 @@ class Inchoo_Theme_Model_Image extends Mage_Catalog_Model_Product_Image
 	protected $_supportedSources = array(
 		'catalog/product',
 		'catalog/category',
+		//'sales/quote_item',
 		'enterprise_catalogevent/event',
 		'blog/post',
 		'blog/blog'
