@@ -13,6 +13,17 @@ class Inchoo_Theme_Model_Image extends Mage_Catalog_Model_Product_Image
 		'blog/blog'
 	);
 	
+	protected function _construct()
+    {
+		$supportedSources = array();
+    	foreach($this->_supportedSources as $source) {
+			if(class_exists(Mage::getConfig()->getModelClassName($source))) {
+				$supportedSources[] = $source;
+			}
+    	}
+		$this->_supportedSources = $supportedSources;
+    }
+	
 	public function setCrop($crop)
 	{
 		$this->_crop = $crop;
@@ -145,7 +156,6 @@ class Inchoo_Theme_Model_Image extends Mage_Catalog_Model_Product_Image
 		foreach($this->_supportedSources as $source) {
 			$className = Mage::getConfig()->getModelClassName($source);
 			if($model instanceof $className) {
-				//$this->_setSource($source,$model);
 				$this->_source = Mage::getModel('inchoo_theme/image_source_'.str_replace('/','_',$source),$model);
 				break;
 			}
@@ -157,7 +167,6 @@ class Inchoo_Theme_Model_Image extends Mage_Catalog_Model_Product_Image
     	return $this->_source;
     }
     
-    
     public function clearCache()
     {
     	foreach($this->_supportedSources as $source) {
@@ -165,6 +174,5 @@ class Inchoo_Theme_Model_Image extends Mage_Catalog_Model_Product_Image
     		$source->clearCache();
     	}
     }
-	
 	
 }
