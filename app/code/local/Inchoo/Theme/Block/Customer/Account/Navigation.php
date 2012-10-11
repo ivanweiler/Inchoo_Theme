@@ -32,7 +32,7 @@ class Inchoo_Theme_Block_Customer_Account_Navigation extends Mage_Customer_Block
     
     public function getLinks()
     {
-    	usort($this->_links, array($this, '_sort'));
+    	uasort($this->_links, array($this, '_sort'));
         return $this->_links;
     }
     

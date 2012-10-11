@@ -13,7 +13,7 @@ class Inchoo_Theme_Model_Observer
 		$controller = $observer->getEvent()->getControllerAction();
 		
 		//this also allows controllers custom noRoute action
-		if($controller->getRequest()->getActionName() == 'noRoute') {
+		if($controller->getRequest()->getActionName() == 'noRouteDummy') {
 			return $this;
 		}
 		
@@ -30,7 +30,7 @@ class Inchoo_Theme_Model_Observer
 		}
 		
 		if($exceptionMatch == $mode) {
-			$controller->getRequest()->setActionName('noRoute')->setDispatched(false);		
+			$controller->getRequest()->setActionName('noRouteDummy')->setDispatched(false);		
 		}
 		
 		return $this;
