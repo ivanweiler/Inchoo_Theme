@@ -76,7 +76,7 @@ Emulators
 Template Filter addons
 ----------------------
 {{var customer.getName}}
-{{if customer.getIsLoggedIn}}
+{{if customer.getIsLoggedIn()}}<a>Logout</a>{{/if}}
 
 Router Blocker
 --------------
